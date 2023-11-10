@@ -1,10 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
-import { api } from "./lib/axios";
 import cors from 'cors';
 import { router } from "./routes";
-import * as cheerio from 'cheerio';
 import { ZodError } from "zod";
-import { Product } from "./use-cases/search-products";
 
 const app = express();
 
@@ -12,7 +9,6 @@ app.use(express.json());
 app.use(cors());
 app.use(router); //isolating my routes into a separated folder. Make it easer to test in the future
 
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if (err instanceof ZodError) {
     return response.status(400).json({
@@ -27,6 +23,15 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
 export { app };
 
 
+/* ----------------- IN CASE OF REQUEST NOT WORKING ---------------------------
+  COMMENT LINE "app.use(router)";
+  UNCOMMENT THE REQUEST BELOW AND ITS DEPENDENCIES IMPORTS
+*/
+
+// import { api } from "./lib/axios";
+// import * as cheerio from 'cheerio';
+// import { Product } from "./use-cases/search-products";
+
 // app.get('/api/scrape', async (req, res) => {
 //   const { keyword, page } = req.query;
 
@@ -35,7 +40,7 @@ export { app };
 //     return;
 //   }
 
-//   const amazonURL = `s?k=${String(keyword).replace(' ', '+')}&page=${1}`
+//   const amazonURL = `s?k=${String(keyword).replace(' ', '+')}&page=${page}`
 
 //   try {
 //     const response = await api.get(amazonURL);
@@ -59,9 +64,10 @@ export { app };
 //       }
 //     });
 
-//     res.json(products);
+//     res.json({products});
 //   } catch (error) {
 //     res.status(500).json({ error: 'An error occurred while scraping Amazon.' });
 //   }
 // });
+
 

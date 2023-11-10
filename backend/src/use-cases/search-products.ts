@@ -1,5 +1,5 @@
-import * as cheerio from 'cheerio';
 import { api } from '../lib/axios';
+import * as cheerio from 'cheerio';
 import { NoKeywordProvided } from './errors/no-keyword-provided';
 import { DataFetchError } from './errors/data-fetch-error';
 
@@ -31,11 +31,8 @@ export class SearchProductsUseCase {
       throw new NoKeywordProvided()
     }
 
-    //setting params into the baseURL
-    const amazonURL = `s?k=${keyword.replace(' ', '+')}&page=${page}`
-
     try {
-      const response = await api.get(amazonURL);
+      const response = await api.get(`s?k=${keyword.replace(' ', '+')}&page=${page}`);
 
       // destructuring the data manipulation into an isolated method, to make it cleaner to understand
       const products = this.extractProducts(response.data);
