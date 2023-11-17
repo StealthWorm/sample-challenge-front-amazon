@@ -23,13 +23,16 @@ export const Grid = styled('div', {
   gap: '1.5rem',
   maxHeight: '100vh',
   padding: '1rem',
-  overflowY: 'auto'
+  overflowY: 'auto',
+
+  '@media (max-width: 768px)': {
+    fontSize: '$2sm',
+    gridTemplateColumns: 'repeat(auto-fit, 1fr)',
+  },
 })
 
 export const Item = styled('div', {
   display: 'flex',
-  maxWidth: '360px',
-  flexDirection: 'column',
   position: 'relative',
   padding: '1.5rem',
   border: '1px solid $gray300',
@@ -37,6 +40,8 @@ export const Item = styled('div', {
   backgroundColor: '$gray800',
   color: '$white',
   gap: '1rem',
+  flexDirection: 'column',
+  maxWidth: '360px',
 
   '#main-image': {
     height: '10rem',
@@ -55,7 +60,6 @@ export const Item = styled('div', {
     display: 'flex',
     width: '100%',
     height: 'max-content',
-    // border: '1px solid red',
     minHeight: '4rem',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -74,6 +78,21 @@ export const Item = styled('div', {
     cursor: 'pointer',
     border: '1px solid $orange300',
     filter: 'brightness(110%)'
+  },
+})
+
+export const Info = styled('div', {
+  display: 'flex',
+  width: '100%',
+  position: 'absolute',
+  bottom: 0,
+  padding: '1rem',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+
+  span: {
+    display: 'flex',
+    color: '$gray600',
   }
 })
 
@@ -101,16 +120,14 @@ export const RateStars = styled('img', {
   height: 'max-content',
   backgroundRepeat: 'no-repeat',
   backgroundSize: '100% 2rem',
-  border: '0',
   outline: 'none',
   backgroundPosition: 'right top , right bottom',
+  paddingBottom: '1.5rem',
 
   variants: {
     stars: {
       0: {
         backgroundImage: `url(${zeroStar})`,
-        border: '0',
-        outline: 'none',
       },
       1: {
         backgroundImage: `url(${oneStar})`
@@ -136,7 +153,11 @@ export const AlternativeText = styled('h1', {
   alignContent: 'center',
   justifyContent: 'center',
   margin: '3rem auto',
-  fontSize: '8rem',
+  fontSize: '$2xl',
   color: '$gray800',
   letterSpacing: '0.5rem',
+
+  '@media(max-width: 600px)': {
+    fontSize: '$2sm',
+  },
 })

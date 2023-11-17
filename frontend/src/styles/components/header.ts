@@ -2,20 +2,27 @@ import { styled } from "..";
 
 export const HeaderContainer = styled('div', {
   display: 'flex',
-  height: '4rem',
-  minWidth: '100vw',
+  maxWidth: '100vw',
   alignItems: 'flex-end',
-  alignContent: 'center',
-  justifyContent: 'flex-start',
   gap: '4rem',
-  padding: '4rem 2rem',
-
+  padding: '2rem',
   background: '$gray800',
   borderBottom: '1px solid $gray300',
 
   img: {
     width: '6rem',
     height: '100%',
+
+    '@media(max-width: 600px)': {
+      width: '3rem',
+      height: '100%',
+    },
+  },
+
+  '@media(max-width: 600px)': {
+    alignItems: 'center',
+    flexDirection: 'column',
+    gap: '1rem',
   },
 })
 
@@ -69,18 +76,18 @@ export const InputContainer = styled('div', {
   padding: '0.5rem 1rem',
   borderRadius: '8px 0 0 8px',
   boxSizing: 'border-box',
-  border: '2px solid $gray400',
   alignItems: 'center',
 
   input: {
     display: 'flex',
+    width: '100%',
     fontFamily: 'roboto, sans-serif',
     fontSize: '$2sm',
     outline: 'none',
     padding: '.6rem',
     borderRadius: '.5rem 0 0 .5rem',
     color: '$white',
-    border: '0',
+    border: 0,
     background: 'transparent',
   },
 

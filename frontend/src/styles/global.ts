@@ -34,7 +34,4 @@ export const globalStyles = globalCss({
       boxShadow: '0 0 0 2px $orange300',
     }
   },
-
-
-
 })

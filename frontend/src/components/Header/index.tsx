@@ -27,7 +27,6 @@ export function Header() {
   async function handleFetchProducts(data: FormInputs) {
     setSearching(true)
     updateDataSearch({ inputText: data.keyword, asin: data.asin })
-    // await fetchProducts()
     setSearching(false)
   }
 

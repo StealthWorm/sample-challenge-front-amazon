@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AlternativeText, Grid, HomeContainer, Item, RateStars, Reviews } from "../../styles/pages/home";
+import { AlternativeText, Grid, HomeContainer, IndexPosition, Info, Item, RateStars, Reviews } from "../../styles/pages/home";
 import { ProductsContext } from "../../contexts/ProductsContext";
 
 import zeroStars from '../../assets/no-stars.png'
@@ -62,9 +62,11 @@ export function Home() {
                   </Reviews>
                 }
                 <p>{item.rating}</p>
-                <RateStars css={{ border: 0}} alt={item.rating} src={handleCalcNumberStars(item.rating)}/>
-                <span>{item.position}</span>
-                <span>{item.productASIN}</span>
+                <RateStars css={{ border: 0 }} alt={item.rating} src={handleCalcNumberStars(item.rating)} />
+                <Info>
+                  <span title="ASIN Code">{item.productASIN}</span>
+                  <span>{item.position}</span>
+                </Info>
               </footer>
             </Item>
           ))}
