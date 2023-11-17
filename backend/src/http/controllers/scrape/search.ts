@@ -13,12 +13,13 @@ class SearchProductsController {
 
     const searchProductsQuerySchema = z.object({
       keyword: z.string(),
-      page: z.coerce.number().min(1).default(1),
+      asin: z.string().optional(),
+      page: z.coerce.number().min(1).max(5).default(1),
     })
 
-    const { keyword, page } = searchProductsQuerySchema.parse(request.query)
+    const { keyword, asin, page } = searchProductsQuerySchema.parse(request.query)
 
-    const { products } = await searchProductsUseCase.execute({ keyword, page })
+    const { products } = await searchProductsUseCase.execute({ keyword, asin, page })
 
     return response.status(200).json({ products, });
   }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Grid, HomeContainer, Item, RateStars, Reviews } from "../../styles/pages/home";
+import { AlternativeText, Grid, HomeContainer, Item, RateStars, Reviews } from "../../styles/pages/home";
 import { ProductsContext } from "../../contexts/ProductsContext";
 
 import zeroStars from '../../assets/no-stars.png'
@@ -8,6 +8,7 @@ import twoStars from '../../assets/two-stars.png'
 import threeStars from '../../assets/three-stars.png'
 import fourStars from '../../assets/four-stars.png'
 import fiveStars from '../../assets/five-stars.png'
+import { Pagination } from "../../components/Pagination";
 
 // import { products as productsData } from "../../utils/products.ts";
 export function Home() {
@@ -44,11 +45,12 @@ export function Home() {
   return (
     <HomeContainer>
       <h2>Results</h2>
+      <Pagination />
       {/* <pre>{JSON.stringify(products, null, 2)}</pre> */}
-      {products ? (
+      {products.length ? (
         <Grid>
-          {products.map((item, index) => (
-            <Item key={index}>
+          {products.map((item) => (
+            <Item key={item.productASIN}>
               <header>
                 <img id="main-image" src={item.imgURL} alt={item.title} />
               </header>
@@ -61,12 +63,14 @@ export function Home() {
                 }
                 <p>{item.rating}</p>
                 <RateStars css={{ border: 0}} alt={item.rating} src={handleCalcNumberStars(item.rating)}/>
+                <span>{item.position}</span>
+                <span>{item.productASIN}</span>
               </footer>
             </Item>
           ))}
         </Grid>
       ) : (
-        <h1>NOTHING TO SHOW</h1>
+        <AlternativeText>NOTHING TO SHOW</AlternativeText>
       )}
     </HomeContainer>
   )

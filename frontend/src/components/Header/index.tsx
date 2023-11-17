@@ -10,28 +10,26 @@ import { useForm } from "react-hook-form";
 
 interface FormInputs {
   keyword: string;
+  asin: string;
 }
 
 export function Header() {
-  const { fetchProducts } = useContext(ProductsContext)
-  const [searching, setSearching] = useState(false);
+  const { fetchProducts, updateDataSearch } = useContext(ProductsContext)
+  const [searching, setSearching] = useState(false); //disable  search button when fetching
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>({
     defaultValues: {
       keyword: '',
+      asin: ''
     },
   })
 
   async function handleFetchProducts(data: FormInputs) {
     setSearching(true)
-    await fetchProducts(data.keyword)
+    updateDataSearch({ inputText: data.keyword, asin: data.asin })
+    // await fetchProducts()
     setSearching(false)
   }
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const query = e.target.value
-  //   changeText(query)
-  // }
 
   return (
     <HeaderContainer>
@@ -43,15 +41,18 @@ export function Header() {
           <input
             id="keyword"
             type="text"
+            title="Name of the product"
             placeholder="Search something..."
-            {...register("keyword", {
-              required: true,
-              // onChange: (e) => {
-              //   handleChange(e)
-              // },
-            })}
+            {...register("keyword", { required: true })}
           />
-          {errors.keyword && <ErrorMessage>This field is required</ErrorMessage>}
+          {errors.keyword && <ErrorMessage>Please select a valid name to search!</ErrorMessage>}
+          <input
+            id="asin"
+            type="text"
+            title="ASIN Code of the product"
+            placeholder="Filter by ASIN Code..."
+            {...register("asin")}
+          />
         </InputContainer>
 
         <SearchButton css={{ cursor: searching ? "not-allowed" : "pointer" }}>

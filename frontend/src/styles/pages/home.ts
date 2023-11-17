@@ -21,10 +21,14 @@ export const Grid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
   gap: '1.5rem',
+  maxHeight: '100vh',
+  padding: '1rem',
+  overflowY: 'auto'
 })
 
 export const Item = styled('div', {
   display: 'flex',
+  maxWidth: '360px',
   flexDirection: 'column',
   position: 'relative',
   padding: '1.5rem',
@@ -125,4 +129,14 @@ export const RateStars = styled('img', {
       }
     }
   }
+})
+
+export const AlternativeText = styled('h1', {
+  display: 'inline-block',
+  alignContent: 'center',
+  justifyContent: 'center',
+  margin: '3rem auto',
+  fontSize: '8rem',
+  color: '$gray800',
+  letterSpacing: '0.5rem',
 })

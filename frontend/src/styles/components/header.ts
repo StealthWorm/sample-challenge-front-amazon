@@ -3,12 +3,12 @@ import { styled } from "..";
 export const HeaderContainer = styled('div', {
   display: 'flex',
   height: '4rem',
-  width: '100vw',
-  alignItems: 'center',
+  minWidth: '100vw',
+  alignItems: 'flex-end',
   alignContent: 'center',
   justifyContent: 'flex-start',
   gap: '4rem',
-  padding: '3rem 2rem',
+  padding: '4rem 2rem',
 
   background: '$gray800',
   borderBottom: '1px solid $gray300',
@@ -21,16 +21,6 @@ export const HeaderContainer = styled('div', {
 
 export const FormContainer = styled('form', {
   display: 'flex',
-
-  '& input:first-child': {
-    display: 'flex',
-    fontSize: '$2sm',
-    outline: 'none',
-    padding: '.6rem',
-    borderRadius: '.5rem 0 0 .5rem',
-    color: '$gray500',
-    border: '0'
-  },
 })
 
 export const ErrorMessage = styled('span', {
@@ -38,7 +28,8 @@ export const ErrorMessage = styled('span', {
   color: '$orange300',
   position: 'absolute',
   fontSize: '$sm',
-  bottom: '-1.3rem',
+  bottom: '-2rem',
+  left: 0,
 })
 
 export const SearchButton = styled('div', {
@@ -46,16 +37,12 @@ export const SearchButton = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   position: 'relative',
-  padding: '.5rem .8rem',
+  padding: '1rem',
   border: 0,
   color: '$orange300',
   borderRadius: '0 .5rem .5rem 0',
   background: '$orange300',
   transition: 'all 0.5s',
-
-  '&:hover': {
-    filter: 'brightness(0.7)',
-  },
 
   input: {
     all: 'unset',
@@ -64,15 +51,49 @@ export const SearchButton = styled('div', {
     position: 'absolute',
   },
 
+  '&:hover': {
+    filter: 'brightness(0.7)',
+  },
+
   svg: {
     color: '$orange500',
-    left: 0
   }
 })
 
 export const InputContainer = styled('div', {
   display: 'flex',
   position: 'relative',
-  flexDirection: 'column',
-  gap: '0.5rem'
+  gap: '0.5rem',
+
+  backgroundColor: '$gray900',
+  padding: '0.5rem 1rem',
+  borderRadius: '8px 0 0 8px',
+  boxSizing: 'border-box',
+  border: '2px solid $gray400',
+  alignItems: 'center',
+
+  input: {
+    display: 'flex',
+    fontFamily: 'roboto, sans-serif',
+    fontSize: '$2sm',
+    outline: 'none',
+    padding: '.6rem',
+    borderRadius: '.5rem 0 0 .5rem',
+    color: '$white',
+    border: '0',
+    background: 'transparent',
+  },
+
+  '& input:first-child': {
+    borderRight: '1px solid $gray800',
+  },
+
+  '&:has(input:focus)': {
+    borderColor: '$orange300',
+  },
+
+  '&:has(input:disabled)': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+  },
 })
